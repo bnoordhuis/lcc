@@ -8,11 +8,11 @@ from subprocess import PIPE, Popen
 
 builddir = 'build'
 
-targets = '''alpha/osf mips/irix sparc/solaris x86/linux'''.split()
+targets = '''bytecode alpha/osf mips/irix sparc/solaris x86/linux'''.split()
 
 # Note: the paranoia and yacc tests are omitted because they depend
 # on <stdio.h> and <signal.h> and cannot be run in isolation.
-tests = '''8q array cf cq cvt fields front incr init limits
+tests = '''8q arith array cf cq cvt fields front incr init limits
            sort spill stdarg struct switch wf1'''.split()
 
 def diff(actual, filename):
@@ -38,6 +38,9 @@ def run_test(test, target):
 def run_tests():
     failed = []
     for test, target in itertools.product(tests, targets):
+        if (test == 'arith') ^ (target == 'bytecode'):
+            continue
+        sys.stdout.write('# {test} {target}\n'.format(**locals()))
         if not run_test(test, target):
             failed.append((test, target))
     return failed

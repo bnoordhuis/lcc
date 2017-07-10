@@ -285,6 +285,10 @@ Tree simplify(int op, Type ty, Tree l, Tree r) {
 
 		case MUL+U:
 			commute(l,r);
+			if (l->op == CNST+U && l->u.v.u == 0)
+				return tree(RIGHT, ty, root(r), cnsttree(ty, 0L));
+			if (l->op == CNST+U && l->u.v.u == 1)
+				return retype(r, ty);
 			if (l->op == CNST+U && (n = ispow2(l->u.v.u)) != 0)
 				return simplify(LSH, ty, r, cnsttree(inttype, (long)n));
 			foldcnst(U,u,*);
@@ -498,6 +502,10 @@ Tree simplify(int op, Type ty, Tree l, Tree r) {
 		case MUL+I:
 			commute(l,r);
 			xfoldcnst(I,i,*,muli);
+			if (l->op == CNST+I && l->u.v.u == 0)
+				return tree(RIGHT, ty, root(r), cnsttree(ty, 0L));
+			if (l->op == CNST+I && l->u.v.u == 1)
+				return retype(r, ty);
 			if (l->op == CNST+I && r->op == ADD+I && r->kids[1]->op == CNST+I)
 				/* c1*(x + c2) => c1*x + c1*c2 */
 				return simplify(ADD, ty, simplify(MUL, ty, l, r->kids[0]),

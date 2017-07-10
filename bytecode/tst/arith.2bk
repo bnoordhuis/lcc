@@ -1,0 +1,16 @@
+tst/arith.c:1: warning: expression with no effect elided
+tst/arith.c:2: warning: expression with no effect elided
+tst/arith.c:5: warning: expression with no effect elided
+tst/arith.c:6: warning: expression with no effect elided
+tst/arith.c:9: warning: reference to `volatile int' elided
+tst/arith.c:9: warning: expression with no effect elided
+tst/arith.c:10: warning: reference to `volatile int' elided
+tst/arith.c:10: warning: expression with no effect elided
+tst/arith.c:16: warning: expression with no effect elided
+tst/arith.c:17: warning: expression with no effect elided
+tst/arith.c:20: warning: expression with no effect elided
+tst/arith.c:21: warning: expression with no effect elided
+tst/arith.c:24: warning: reference to `volatile unsigned int' elided
+tst/arith.c:24: warning: expression with no effect elided
+tst/arith.c:25: warning: reference to `volatile unsigned int' elided
+tst/arith.c:25: warning: expression with no effect elided

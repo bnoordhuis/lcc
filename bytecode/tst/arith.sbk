@@ -1,0 +1,201 @@
+export i0
+code
+proc i0 0 0
+CNSTI4 0
+RETI4
+LABELV $1
+endproc i0 0 0
+export i1
+proc i1 0 0
+CNSTI4 0
+RETI4
+LABELV $2
+endproc i1 0 0
+export i2
+proc i2 0 0
+ADDRFP4 0
+INDIRI4
+RETI4
+LABELV $3
+endproc i2 0 0
+export i3
+proc i3 0 0
+ADDRFP4 0
+INDIRI4
+RETI4
+LABELV $4
+endproc i3 0 0
+export i4
+proc i4 0 0
+CNSTI4 0
+RETI4
+LABELV $5
+endproc i4 0 0
+export i5
+proc i5 0 0
+CNSTI4 0
+RETI4
+LABELV $6
+endproc i5 0 0
+export i6
+proc i6 0 0
+ADDRFP4 0
+INDIRP4
+INDIRI4
+RETI4
+LABELV $7
+endproc i6 0 0
+export i7
+proc i7 0 0
+ADDRFP4 0
+INDIRP4
+INDIRI4
+RETI4
+LABELV $8
+endproc i7 0 0
+export i8
+proc i8 0 0
+CNSTI4 0
+RETI4
+LABELV $9
+endproc i8 0 0
+export i9
+proc i9 0 0
+CNSTI4 0
+RETI4
+LABELV $10
+endproc i9 0 0
+export ia
+proc ia 0 0
+ADDRFP4 0
+INDIRP4
+INDIRI4
+RETI4
+LABELV $11
+endproc ia 0 0
+export ib
+proc ib 0 0
+ADDRFP4 0
+INDIRP4
+INDIRI4
+RETI4
+LABELV $12
+endproc ib 0 0
+export ic
+proc ic 0 0
+ADDRFP4 0
+INDIRP4
+CALLI4
+CNSTI4 0
+RETI4
+LABELV $13
+endproc ic 0 0
+export id
+proc id 0 0
+ADDRFP4 0
+INDIRP4
+CALLI4
+CNSTI4 0
+RETI4
+LABELV $14
+endproc id 0 0
+export u0
+proc u0 0 0
+CNSTU4 0
+RETU4
+LABELV $15
+endproc u0 0 0
+export u1
+proc u1 0 0
+CNSTU4 0
+RETU4
+LABELV $16
+endproc u1 0 0
+export u2
+proc u2 0 0
+ADDRFP4 0
+INDIRU4
+RETU4
+LABELV $17
+endproc u2 0 0
+export u3
+proc u3 0 0
+ADDRFP4 0
+INDIRU4
+RETU4
+LABELV $18
+endproc u3 0 0
+export u4
+proc u4 0 0
+CNSTU4 0
+RETU4
+LABELV $19
+endproc u4 0 0
+export u5
+proc u5 0 0
+CNSTU4 0
+RETU4
+LABELV $20
+endproc u5 0 0
+export u6
+proc u6 0 0
+ADDRFP4 0
+INDIRP4
+INDIRU4
+RETU4
+LABELV $21
+endproc u6 0 0
+export u7
+proc u7 0 0
+ADDRFP4 0
+INDIRP4
+INDIRU4
+RETU4
+LABELV $22
+endproc u7 0 0
+export u8
+proc u8 0 0
+CNSTU4 0
+RETU4
+LABELV $23
+endproc u8 0 0
+export u9
+proc u9 0 0
+CNSTU4 0
+RETU4
+LABELV $24
+endproc u9 0 0
+export ua
+proc ua 0 0
+ADDRFP4 0
+INDIRP4
+INDIRU4
+RETU4
+LABELV $25
+endproc ua 0 0
+export ub
+proc ub 0 0
+ADDRFP4 0
+INDIRP4
+INDIRU4
+RETU4
+LABELV $26
+endproc ub 0 0
+export uc
+proc uc 0 0
+ADDRFP4 0
+INDIRP4
+CALLU4
+CNSTU4 0
+RETU4
+LABELV $27
+endproc uc 0 0
+export ud
+proc ud 0 0
+ADDRFP4 0
+INDIRP4
+CALLU4
+CNSTU4 0
+RETU4
+LABELV $28
+endproc ud 0 0
