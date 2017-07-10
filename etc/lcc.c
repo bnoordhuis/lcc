@@ -595,7 +595,12 @@ xx(unsigned_int,4)
 				alist = append(&arg[3], alist);
 				return;
 			case 'l':
-				llist[0] = append(&arg[3], llist[0]);
+				{
+					char *s = &arg[3];
+					if (*s == ',')
+						s = &s[1];
+					llist[0] = append(s, llist[0]);
+				}
 				return;
 			}
 		fprintf(stderr, "%s: %s ignored\n", progname, arg);
