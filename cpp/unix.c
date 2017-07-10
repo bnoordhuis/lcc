@@ -41,11 +41,23 @@ setup(int argc, char **argv)
 				error(FATAL, "Too many -I directives");
 			break;
 		case 'D':
+			/* Hack to accept `-Df(x)=x` style definitions. */
+			{
+				char *p, s[1024];
+				snprintf(s, sizeof(s), "define %s", optarg);
+				if ((p = strchr(s, '='))) *p = ' ';
+				setsource("<cmdarg>", NULL, s);
+				maketokenrow(3, &tr);
+				gettokens(&tr, 1);
+				dodefine(&tr);
+				unsetsource();
+				break;
+			}
 		case 'U':
 			setsource("<cmdarg>", NULL, optarg);
 			maketokenrow(3, &tr);
 			gettokens(&tr, 1);
-			doadefine(&tr, c);
+			doundef(&tr);
 			unsetsource();
 			break;
 		case 'M':

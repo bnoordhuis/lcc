@@ -91,43 +91,18 @@ dodefine(Tokenrow *trp)
 }
 
 /*
- * Definition received via -D or -U
+ * Definition received via -U
  */
 void
-doadefine(Tokenrow *trp, int type)
+doundef(Tokenrow *trp)
 {
 	Nlist *np;
-	static unsigned char one[] = "1";
-	static Token onetoken[1] = {{ NUMBER, 0, 0, 0, 1, one }};
-	static Tokenrow onetr = { onetoken, onetoken, onetoken+1, 1 };
 
 	trp->tp = trp->bp;
-	if (type=='U') {
-		if (trp->lp-trp->tp != 2 || trp->tp->type!=NAME)
-			goto syntax;
-		if ((np = lookup(trp->tp, 0)) == NULL)
-			return;
+	if (trp->lp-trp->tp != 2 || trp->tp->type!=NAME)
+		error(FATAL, "Illegal -U argument %r", trp);
+	if ((np = lookup(trp->tp, 0)))
 		np->flag &= ~ISDEFINED;
-		return;
-	}
-	if (trp->tp >= trp->lp || trp->tp->type!=NAME)
-		goto syntax;
-	np = lookup(trp->tp, 1);
-	np->flag |= ISDEFINED;
-	trp->tp += 1;
-	if (trp->tp >= trp->lp || trp->tp->type==END) {
-		np->vp = &onetr;
-		return;
-	}
-	if (trp->tp->type!=ASGN)
-		goto syntax;
-	trp->tp += 1;
-	if ((trp->lp-1)->type == END)
-		trp->lp -= 1;
-	np->vp = normtokenrow(trp);
-	return;
-syntax:
-	error(FATAL, "Illegal -D or -U argument %r", trp);
 }
 			
 /*

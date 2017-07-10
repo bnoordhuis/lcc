@@ -12,6 +12,9 @@ char *cpp[] = {
 	LCCDIR "lib/lcc/cpp",
 	"-D__STDC__=1",
 	"-D__i386__=1",
+	/* Hack to work around gcc-isms in system headers. */
+	"-D__asm(x)=",
+	"-D__attribute__(x)=",
 	"$1", "$2", "$3",
 	0 };
 char *include[] = {

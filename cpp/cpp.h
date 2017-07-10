@@ -108,7 +108,7 @@ int	foldline(Source *);
 Nlist	*lookup(Token *, int);
 void	control(Tokenrow *);
 void	dodefine(Tokenrow *);
-void	doadefine(Tokenrow *, int);
+void	doundef(Tokenrow *);
 void	doinclude(Tokenrow *);
 void	doif(Tokenrow *, enum kwtype);
 void	expand(Tokenrow *, Nlist *);
