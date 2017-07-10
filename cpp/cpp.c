@@ -207,6 +207,9 @@ control(Tokenrow *trp)
 
 	case KWARNING:
 		trp->tp = tp+1;
+		/* Silence brutally annoying "unsupported compiler" warning. */
+		if (strstr(cursource->filename, "/usr/include/sys/cdefs.h"))
+			break;
 		error(WARNING, "#warning directive: %r", trp);
 		break;
 
