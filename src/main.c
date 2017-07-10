@@ -6,6 +6,9 @@ static void typestab(Symbol, void *);
 
 static void stabline(Coordinate *);
 static void stabend(Coordinate *, Symbol, Coordinate **, Symbol *, Symbol *);
+
+extern Interface x86darwinIR;
+extern Interface x86linuxIR;
 Interface *IR = NULL;
 
 int Aflag;		/* >= 0 if -A specified */
@@ -23,6 +26,7 @@ static FILE *srcfp;		/* stream for current file, if non-NULL */
 static int srcpos;		/* position of srcfp, if srcfp is non-NULL */
 int main(int argc, char *argv[]) {
 	int i, j;
+	x86darwinIR = x86linuxIR;
 	for (i = argc - 1; i > 0; i--)
 		if (strncmp(argv[i], "-target=", 8) == 0)
 			break;

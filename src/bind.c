@@ -7,6 +7,7 @@ xx(sparc/sun,    sparcIR) \
 xx(sparc/solaris,solarisIR) \
 xx(x86/win32,    x86IR) \
 xx(x86/linux,    x86linuxIR) \
+xx(x86/darwin,   x86darwinIR) \
 xx(symbolic/osf, symbolic64IR) \
 xx(symbolic/irix,symbolicIR) \
 xx(symbolic,     symbolicIR) \

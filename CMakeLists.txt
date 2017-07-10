@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 
 if(NOT HOSTFILE)
-  if(CMAKE_SYSTEM_NAME STREQUAL Linux)
+  if(CMAKE_SYSTEM_NAME STREQUAL Darwin)
+    set(HOSTFILE etc/darwin.c)
+  elseif(CMAKE_SYSTEM_NAME STREQUAL Linux)
     set(HOSTFILE etc/linux.c)
   elseif(CMAKE_SYSTEM_NAME STREQUAL SunOS)
     set(HOSTFILE etc/solaris.c)

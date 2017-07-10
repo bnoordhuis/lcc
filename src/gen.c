@@ -343,6 +343,11 @@ unsigned emitasm(Node p, int nt) {
 	else if (*fmt == '#')
 		(*IR->x.emit2)(p);
 	else {
+		int prepost = (*fmt == '&');
+		if (prepost) {
+			fmt++;
+			(*IR->x.preemit2)(p);
+		}
 		if (*fmt == '?') {
 			fmt++;
 			assert(p->kids[0]);
@@ -361,6 +366,8 @@ unsigned emitasm(Node p, int nt) {
 				fputs(p->syms[*fmt - 'a']->x.name, stdout);
 			else
 				(void)putchar(*fmt);
+		if (prepost)
+			(*IR->x.postemit2)(p);
 	}
 	return 0;
 }

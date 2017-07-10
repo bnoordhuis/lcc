@@ -11,9 +11,16 @@ enum { EAX=0, ECX=1, EDX=2, EBX=3, ESI=6, EDI=7 };
 #define LEFT_CHILD(p) ((p)->kids[0])
 #define RIGHT_CHILD(p) ((p)->kids[1])
 #define STATE_LABEL(p) ((p)->x.state)
+#define islinux (IR == &x86linuxIR)
+#define isdarwin (IR == &x86darwinIR)
 extern int ckstack(Node, int);
 extern int memop(Node);
 extern int sametree(Node, Node);
+
+extern Interface x86IR;
+extern Interface x86darwinIR;
+extern Interface x86linuxIR;
+
 static Symbol charreg[32], shortreg[32], intreg[32];
 static Symbol fltreg[32];
 
@@ -526,9 +533,9 @@ stmt: ASGNU1(addr,rc)           "movb %1,%0\n"   1
 stmt: ASGNU2(addr,rc)           "movw %1,%0\n"   1
 stmt: ASGNU4(addr,rc)           "movl %1,%0\n"   1
 stmt: ASGNP4(addr,rc)           "movl %1,%0\n"   1
-stmt: ARGI4(mrca)               "pushl %0\n"  1
-stmt: ARGU4(mrca)               "pushl %0\n"  1
-stmt: ARGP4(mrca)               "pushl %0\n"  1
+stmt: ARGI4(mrca)               "&pushl %0\n"  1
+stmt: ARGU4(mrca)               "&pushl %0\n"  1
+stmt: ARGP4(mrca)               "&pushl %0\n"  1
 stmt: ASGNB(reg,INDIRB(reg))    "movl $%a,%%ecx\nrep\nmovsb\n"
 stmt: ARGB(INDIRB(reg))         "# ARGB\n"
 
@@ -543,8 +550,8 @@ stmt: ASGNF8(addr,freg)         "fstpl %0\n"  7
 stmt: ASGNF4(addr,freg)         "fstps %0\n"  7
 stmt: ASGNF4(addr,CVFF4(freg))  "fstps %0\n"  7
 
-stmt: ARGF8(freg)       "subl $8,%%esp\nfstpl (%%esp)\n"
-stmt: ARGF4(freg)       "subl $4,%%esp\nfstps (%%esp)\n"
+stmt: ARGF8(freg)       "&subl $8,%%esp\nfstpl (%%esp)\n"
+stmt: ARGF4(freg)       "&subl $4,%%esp\nfstps (%%esp)\n"
 freg: NEGF8(freg)       "fchs\n"
 freg: NEGF4(freg)       "fchs\n"
 
@@ -652,29 +659,29 @@ freg: MULF8(freg,CVFF8(INDIRF4(addr)))          "fmuls %1\n"
 freg: DIVF8(freg,CVFF8(INDIRF4(addr)))          "fdivs %1\n"
 freg: LOADF8(memf)                              "fld%0\n"
 
-reg:  CALLI4(addrj)  "call %0\naddl $%a,%%esp\n"        hasargs(a)
-reg:  CALLU4(addrj)  "call %0\naddl $%a,%%esp\n"        hasargs(a)
-reg:  CALLP4(addrj)  "call %0\naddl $%a,%%esp\n"        hasargs(a)
+reg:  CALLI4(addrj)  "&call %0\n"  hasargs(a)
+reg:  CALLU4(addrj)  "&call %0\n"  hasargs(a)
+reg:  CALLP4(addrj)  "&call %0\n"  hasargs(a)
 
-reg:  CALLI4(addrj)  "call %0\n"                        1
-reg:  CALLU4(addrj)  "call %0\n"                        1
-reg:  CALLP4(addrj)  "call %0\n"                        1
+reg:  CALLI4(addrj)  "&call %0\n"  1
+reg:  CALLU4(addrj)  "&call %0\n"  1
+reg:  CALLP4(addrj)  "&call %0\n"  1
 
-stmt: CALLV(addrj)   "call %0\naddl $%a-4,%%esp\n"      hasargs(a) + !isstruct(freturn(a->syms[1]->type))
-stmt: CALLV(addrj)   "call %0\naddl $%a,%%esp\n"        hasargs(a) +  isstruct(freturn(a->syms[1]->type))
-stmt: CALLV(addrj)   "call %0\n"                        1
+stmt: CALLV(addrj)   "&call %0\n"  hasargs(a) + !isstruct(freturn(a->syms[1]->type))
+stmt: CALLV(addrj)   "&call %0\n"  hasargs(a) +  isstruct(freturn(a->syms[1]->type))
+stmt: CALLV(addrj)   "&call %0\n"  1
 
-freg: CALLF4(addrj)  "call %0\naddl $%a,%%esp\n"        hasargs(a)
-freg: CALLF4(addrj)  "call %0\n"                        1
+freg: CALLF4(addrj)  "&call %0\n"  hasargs(a)
+freg: CALLF4(addrj)  "&call %0\n"  1
 
-stmt: CALLF4(addrj)  "call %0\naddl $%a,%%esp\nfstp %%st(0)\n"  hasargs(a)
-stmt: CALLF4(addrj)  "call %0\nfstp %%st(0)\n"                  1
+stmt: CALLF4(addrj)  "&call %0\nfstp %%st(0)\n"  hasargs(a)
+stmt: CALLF4(addrj)  "&call %0\nfstp %%st(0)\n"  1
 
-freg: CALLF8(addrj)  "call %0\naddl $%a,%%esp\n"        hasargs(a)
-freg: CALLF8(addrj)  "call %0\n"                        1
+freg: CALLF8(addrj)  "&call %0\n"  hasargs(a)
+freg: CALLF8(addrj)  "&call %0\n"  1
 
-stmt: CALLF8(addrj)  "call %0\naddl $%a,%%esp\nfstp %%st(0)\n"  hasargs(a)
-stmt: CALLF8(addrj)  "call %0\nfstp %%st(0)\n"                  1
+stmt: CALLF8(addrj)  "&call %0\nfstp %%st(0)\n"  hasargs(a)
+stmt: CALLF8(addrj)  "&call %0\nfstp %%st(0)\n"  1
 
 stmt: RETI4(reg)  "# ret\n"
 stmt: RETU4(reg)  "# ret\n"
@@ -684,7 +691,6 @@ stmt: RETF8(freg) "# ret\n"
 %%
 static void progbeg(int argc, char *argv[]) {
         int i;
-        extern Interface x86IR, x86linuxIR;
 
 #define xx(f) assert(!x86linuxIR.f); x86linuxIR.f = x86IR.f
         xx(address);
@@ -694,6 +700,7 @@ static void progbeg(int argc, char *argv[]) {
         xx(x.blkloop);
         xx(x.doarg);
 #undef xx
+        x86darwinIR = x86linuxIR;
         {
                 union {
                         char c;
@@ -766,6 +773,8 @@ static Symbol rmap(int opk) {
 static Symbol prevg;
 
 static void globalend(void) {
+        if (isdarwin)
+                return;
         if (prevg && prevg->type->size > 0)
                 print(".size %s,%d\n", prevg->x.name, prevg->type->size);
         prevg = NULL;
@@ -847,6 +856,76 @@ static void clobber(Node p) {
         }
 }
 
+static int argsize(Node p) {
+        int size;
+
+        assert(generic(p->op) == ARG);
+        for (size = 0; generic(p->op) == ARG; p = p->link)
+                size += 4;
+
+        return size;
+}
+
+static int padsize(int argsize) {
+        int pad;
+
+        /* pad = (12 - framesize - argsize) % 16 -- but in longhand because
+         * in C the modulus of a negative number is implementation-defined.
+         */
+        pad = 12 - framesize - argsize;
+        if (pad < 0)
+                pad = 16 - -pad % 16;
+
+        return pad;
+}
+
+static Node firstarg;
+
+static void preemit2(Node p) {
+        if (islinux)
+                return;
+        /* Call with one or more arguments. */
+        if (firstarg == NULL && generic(p->op) == ARG) {
+                if (isdarwin) {
+                        int pad = padsize(argsize(p));
+                        if (pad > 0)
+                                print("subl $%d,%%esp\n", pad);
+                }
+                firstarg = p;
+        }
+        /* Call with no arguments. */
+        if (firstarg == NULL && generic(p->op) == CALL) {
+                int pad = padsize(0);
+                if (pad > 0)
+                        print("subl $%d,%%esp\n", pad);
+        }
+}
+
+static void postemit2(Node p) {
+        if (isdarwin && generic(p->op) == CALL) {
+                int pad = 0;
+                if (isdarwin)
+                        pad = padsize(0);
+                if (islinux && firstarg != NULL)
+                        pad = argsize(firstarg);
+                if (pad > 0)
+                        print("addl $%d,%%esp\n", pad);
+                firstarg = NULL;
+        }
+        if (islinux) {
+                switch (specific(p->op)) {
+                case CALL+F: case CALL+I: case CALL+U: case CALL+P:
+                        if (p->syms[0]->x.name[0] > '0')
+                                print("addl $%s,%%esp\n", p->syms[0]->x.name);
+                        break;
+                case CALL+V:
+                        if (p->syms[0]->x.name[0] > '0')
+                                print("addl $%s-4,%%esp\n", p->syms[0]->x.name);
+                        break;
+                }
+        }
+}
+
 static void emit2(Node p) {
         int op = specific(p->op);
 #define preg(f) ((f)[getregnum(p->x.kids[0])]->x.name)
@@ -883,7 +962,8 @@ static void function(Symbol f, Symbol caller[], Symbol callee[], int n) {
 
         globalend();
         print(".align 16\n");
-        print(".type %s,@function\n", f->x.name);
+        if (islinux)
+                print(".type %s,@function\n", f->x.name);
         print("%s:\n", f->x.name);
         print("pushl %%ebp\n");
         if (pflag) {
@@ -925,13 +1005,14 @@ static void function(Symbol f, Symbol caller[], Symbol callee[], int n) {
         print("popl %%esi\n");
         print("popl %%ebx\n");
         print("popl %%ebp\n");
-	if (isstruct(freturn(f->type)))
-		print("ret $4\n");
-	else
-		print("ret\n");
-        { int l = genlabel(1);
-          print(".Lf%d:\n", l);
-          print(".size %s,.Lf%d-%s\n", f->x.name, l, f->x.name);
+        if (isstruct(freturn(f->type)))
+                print("ret $4\n");
+        else
+                print("ret\n");
+        if (islinux) {
+                int l = genlabel(1);
+                print(".Lf%d:\n", l);
+                print(".size %s,.Lf%d-%s\n", f->x.name, l, f->x.name);
         }
 }
 
@@ -941,7 +1022,7 @@ static void defsymbol(Symbol p) {
         else if (p->generated)
                 p->x.name = stringf(".LC%s", p->name);
         else if (p->scope == GLOBAL || p->sclass == EXTERN)
-                p->x.name = stringf("%s", p->name);
+                p->x.name = stringf("%s%s", isdarwin ? "_" : "", p->name);
         else
                 p->x.name = p->name;
 }
@@ -1005,7 +1086,7 @@ static void import(Symbol p) {}
 static void global(Symbol p) {
         globalend();
         print(".align %d\n", p->type->align > 4 ? 4 : p->type->align);
-        if (!p->generated) {
+        if (islinux && !p->generated) {
                 print(".type %s,@%s\n", p->x.name,
                         isfunc(p->type) ? "function" : "object");
                 if (p->type->size > 0)
@@ -1027,6 +1108,8 @@ static void space(int n) {
         if (cseg != BSS)
                 print(".space %d\n", n);
 }
+
+Interface x86darwinIR;  /* Initialized in progbeg(). */
 
 Interface x86linuxIR = {
         1, 1, 0,  /* char */
@@ -1075,7 +1158,9 @@ Interface x86linuxIR = {
             _templates,
             _isinstruction,
             _ntname,
+            preemit2,
             emit2,
+            postemit2,
             0, /* doarg */
             target,
             clobber,

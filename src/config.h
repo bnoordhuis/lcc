@@ -16,7 +16,9 @@ typedef struct {
 	char **_templates;
 	char *_isinstruction;
 	char **_ntname;
+	void (*preemit2)(Node);
 	void (*emit2)(Node);
+	void (*postemit2)(Node);
 	void (*doarg)(Node);
 	void (*target)(Node);
 	void (*clobber)(Node);
