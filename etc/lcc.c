@@ -474,6 +474,7 @@ static void help(void) {
 "-Bstatic -Bdynamic	specify static or dynamic libraries\n",
 #endif
 "-Bdir/	use the compiler named `dir/rcc'\n",
+"-Cdir/	use the preprocessor named `dir/cpp'\n",
 "-c	compile only\n",
 "-dn	set switch statement density to `n'\n",
 "-Dname -Dname=def	define the preprocessor symbol `name'\n",
@@ -640,6 +641,20 @@ xx(unsigned_int,4)
 			com[0] = concat(path, "rcc");
 		if (path[0] == 0)
 			error("missing directory in -B option", 0);
+		}
+		return;
+        case 'C':
+		{
+		static char *path;
+		if (path)
+			error("-C overwrites earlier option", 0);
+		path = arg + 2;
+		if (strstr(com[1], "win32") != NULL)
+			cpp[0] = concat(replace(path, '/', '\\'), concat("cpp", first(suffixes[4])));
+		else
+			cpp[0] = concat(path, "cpp");
+		if (path[0] == 0)
+			error("missing directory in -C option", 0);
 		}
 		return;
 	case 'h':
