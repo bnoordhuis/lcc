@@ -46,6 +46,9 @@ doinclude(Tokenrow *trp)
 	if (trp->tp < trp->lp || len==0)
 		goto syntax;
 	fname[len] = '\0';
+	if (!strcmp(fname, "libkern/_OSByteOrder.h")
+	 && !strstr(cursource->filename, "lcc/fixups/libkern/_OSByteOrder.h"))
+		snprintf(fname, sizeof(fname), "lcc/fixups/libkern/_OSByteOrder.h");
 	if (fname[0]=='/') {
 		fd = fopen(fname, "r");
 		strcpy(iname, fname);
