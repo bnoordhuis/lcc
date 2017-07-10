@@ -17,7 +17,7 @@ if(NOT CMAKE_INSTALL_PREFIX)
   set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 
-add_definitions(-DLCCDIR="${CMAKE_INSTALL_PREFIX}/lib/lcc/")
+add_definitions(-DLCCDIR="${CMAKE_INSTALL_PREFIX}/")
 include_directories(src)
 
 add_executable(bprint etc/bprint.c)
@@ -39,13 +39,8 @@ add_executable(rcc
                src/symbolic.c src/trace.c src/tree.c src/types.c)
 
 install(TARGETS lcc DESTINATION bin)
-install(TARGETS rcc DESTINATION lib/lcc)
-
-if(HOSTFILE MATCHES linux.c)
-  install(TARGETS cpp DESTINATION lib/lcc/gcc)
-else()
-  install(TARGETS cpp DESTINATION lib/lcc)
-endif()
+install(TARGETS cpp rcc DESTINATION lib/lcc)
+install(DIRECTORY include/ DESTINATION include)
 
 macro(lburg x)
   add_custom_command(
