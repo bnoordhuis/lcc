@@ -52,7 +52,6 @@ int dflag = 0;
 
 int swap;
 
-unsigned (*emitter)(Node, int) = emitasm;
 static char NeedsReg[] = {
 	0,                      /* unused */
 	1,                      /* CNST */
@@ -371,7 +370,7 @@ void emit(Node p) {
 		if (p->x.equatable && requate(p) || moveself(p))
 			;
 		else
-			(*emitter)(p, p->x.inst);
+			emitasm(p, p->x.inst);
 		p->x.emitted = 1;
 	}
 }
