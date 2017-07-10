@@ -36,7 +36,8 @@ dodefine(Tokenrow *trp)
 			int err = 0;
 			for (;;) {
 				Token *atp;
-				if (tp->type!=NAME) {
+				int ellips = (tp->type==ELLIPS);
+				if (!ellips && tp->type!=NAME) {
 					err++;
 					break;
 				}
@@ -51,6 +52,10 @@ dodefine(Tokenrow *trp)
 				tp += 1;
 				if (tp->type==RP)
 					break;
+				if (ellips) {
+					error(ERROR, "Missing ')' in macro parameters");
+					return;
+				}
 				if (tp->type!=COMMA) {
 					err++;
 					break;
