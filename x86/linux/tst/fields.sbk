@@ -123,7 +123,7 @@ addl $16,%esp
 pushl $x
 call f2
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC3:
 movl %ebp,%esp
 popl %edi
@@ -147,7 +147,7 @@ andl $0xffffffc3,(,%edi)
 movl 20(%ebp),%edi
 movl (,%edi),%esi
 andl $0xfffffffc,%esi
-mov $0,%ebx
+xorl %ebx,%ebx
 andl $3,%ebx
 andl $3,%ebx
 orl %ebx,%esi
@@ -176,7 +176,7 @@ pushl %edi
 pushl $.LC26
 call printf
 addl $12,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC22:
 movl %ebp,%esp
 popl %edi
@@ -217,13 +217,13 @@ call f1
 addl $4,%esp
 movl (,%edi),%esi
 andl $0xffffffc3,%esi
-mov $0,%ebx
+xorl %ebx,%ebx
 andl $15,%ebx
 leal (,%ebx,4),%ebx
 andl $60,%ebx
 orl %ebx,%esi
 movl %esi,(,%edi)
-mov $0,%eax
+xorl %eax,%eax
 .LC28:
 movl %ebp,%esp
 popl %edi

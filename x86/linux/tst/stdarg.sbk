@@ -94,7 +94,7 @@ movsb
 pushl $.LC11
 call print
 addl $100,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -243,7 +243,7 @@ movl 20(%ebp),%edi
 movsbl (,%edi),%edi
 cmpl $0,%edi
 jne .LC16
-mov $0,%eax
+xorl %eax,%eax
 .LC13:
 movl %ebp,%esp
 popl %edi

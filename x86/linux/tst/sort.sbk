@@ -45,7 +45,7 @@ incl -4(%ebp)
 movl -4(%ebp),%edi
 cmpl $10,%edi
 jb .LC2
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -93,7 +93,7 @@ leal 48(%edx),%edi
 pushl %edi
 call putchar
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC7:
 movl %ebp,%esp
 popl %edi
@@ -122,7 +122,7 @@ movl %edi,xx
 pushl %edi
 call quick
 addl $12,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC13:
 movl %ebp,%esp
 popl %edi
@@ -145,7 +145,7 @@ subl $4,%esp
 movl 28(%ebp),%edi
 cmpl %edi,24(%ebp)
 jl .LC16
-mov $0,%eax
+xorl %eax,%eax
 jmp .LC15
 .LC16:
 pushl 28(%ebp)
@@ -168,7 +168,7 @@ pushl %edi
 pushl 20(%ebp)
 call quick
 addl $12,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC15:
 movl %ebp,%esp
 popl %edi
@@ -291,7 +291,7 @@ movl %esi,(,%edi)
 movl 24(%ebp),%edi
 movl -4(%ebp),%esi
 movl %esi,(,%edi)
-mov $0,%eax
+xorl %eax,%eax
 .LC32:
 movl %ebp,%esp
 popl %edi

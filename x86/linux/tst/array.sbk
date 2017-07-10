@@ -67,7 +67,7 @@ leal -60(%ebp),%edi
 pushl %edi
 call g
 addl $8,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -132,7 +132,7 @@ jl .LC30
 pushl $.LC29
 call printf
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC19:
 movl %ebp,%esp
 popl %edi
@@ -199,7 +199,7 @@ jl .LC48
 pushl $.LC29
 call printf
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC39:
 movl %ebp,%esp
 popl %edi

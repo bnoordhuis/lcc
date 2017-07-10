@@ -11,7 +11,7 @@ movl %esp,%ebp
 pushl $0
 call exit
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -54,7 +54,7 @@ jne .LC4
 movl 24(%ebp),%edi
 movl %edi,20(%ebp)
 .LC4:
-mov $0,%eax
+xorl %eax,%eax
 .LC3:
 movl %ebp,%esp
 popl %edi

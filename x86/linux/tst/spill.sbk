@@ -8,7 +8,7 @@ pushl %ebx
 pushl %esi
 pushl %edi
 movl %esp,%ebp
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -32,7 +32,7 @@ movl %eax,%edi
 call f
 leal (%eax,%edi),%edi
 movl %edi,20(%ebp)
-mov $0,%eax
+xorl %eax,%eax
 .LC3:
 movl %ebp,%esp
 popl %edi
@@ -66,7 +66,7 @@ movl $1,-4(%ebp)
 movl -4(%ebp),%esi
 leal (%esi,%edi),%edi
 movl %edi,20(%ebp)
-mov $0,%eax
+xorl %eax,%eax
 .LC5:
 movl %ebp,%esp
 popl %edi
@@ -110,7 +110,7 @@ movl $0,-44(%ebp)
 .LC13:
 movl -44(%ebp),%esi
 movl %esi,(,%edi)
-mov $0,%eax
+xorl %eax,%eax
 .LC10:
 movl %ebp,%esp
 popl %edi
@@ -169,7 +169,7 @@ movl $0,-28(%ebp)
 .LC18:
 movl -28(%ebp),%edi
 movl %edi,i
-mov $0,%eax
+xorl %eax,%eax
 .LC15:
 movl %ebp,%esp
 popl %edi
@@ -216,7 +216,7 @@ fldl (,%edi)
 fmull (,%esi)
 fsubrp %st,%st(1)
 fstpl x
-mov $0,%eax
+xorl %eax,%eax
 .LC21:
 movl %ebp,%esp
 popl %edi

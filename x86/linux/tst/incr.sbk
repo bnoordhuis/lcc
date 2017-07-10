@@ -8,7 +8,7 @@ pushl %ebx
 pushl %esi
 pushl %edi
 movl %esp,%ebp
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -48,7 +48,7 @@ leal -1(%edi),%edi
 movl %edi,-8(%ebp)
 movb (,%edi),%bl
 movb %bl,-4(%ebp)
-mov $0,%eax
+xorl %eax,%eax
 .LC3:
 movl %ebp,%esp
 popl %edi
@@ -88,7 +88,7 @@ leal -4(%edi),%edi
 movl %edi,-8(%ebp)
 movl (,%edi),%edi
 movl %edi,-4(%ebp)
-mov $0,%eax
+xorl %eax,%eax
 .LC5:
 movl %ebp,%esp
 popl %edi
@@ -128,7 +128,7 @@ leal -1(%edi),%edi
 movl %edi,-8(%ebp)
 movb (,%edi),%bl
 movb %bl,-4(%ebp)
-mov $0,%eax
+xorl %eax,%eax
 .LC7:
 movl %ebp,%esp
 popl %edi
@@ -168,7 +168,7 @@ leal -4(%edi),%edi
 movl %edi,-8(%ebp)
 movl (,%edi),%edi
 movl %edi,-4(%ebp)
-mov $0,%eax
+xorl %eax,%eax
 .LC9:
 movl %ebp,%esp
 popl %edi

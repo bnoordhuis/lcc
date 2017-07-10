@@ -30,7 +30,7 @@ jl .LC6
 pushl $0
 call queens
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -98,7 +98,7 @@ movl $1,rows(,%edi,4)
 incl -4(%ebp)
 cmpl $8,-4(%ebp)
 jl .LC12
-mov $0,%eax
+xorl %eax,%eax
 .LC11:
 movl %ebp,%esp
 popl %edi
@@ -134,7 +134,7 @@ jl .LC25
 pushl $.LC30
 call printf
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC24:
 movl %ebp,%esp
 popl %edi

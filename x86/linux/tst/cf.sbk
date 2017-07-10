@@ -100,7 +100,7 @@ addl $12,%esp
 incl -4(%ebp)
 cmpl $127,-4(%ebp)
 jle .LC15
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi

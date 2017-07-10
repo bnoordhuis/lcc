@@ -440,7 +440,8 @@ reg: addr       "leal %0,%c\n"  1
 reg: mr         "movl %0,%c\n"  1
 reg: mr1        "movb %0,%c\n"  1
 reg: mr2        "movw %0,%c\n"  1
-reg: con        "mov %0,%c\n"  1
+reg: con0       "xorl %c,%c\n"  1
+reg: con        "mov %0,%c\n"   2
 
 reg: LOADI1(reg)        "# move\n"  1
 reg: LOADI2(reg)        "# move\n"  1

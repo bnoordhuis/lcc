@@ -30,7 +30,7 @@ jne .LC2
 pushl -24(%ebp)
 call tprint
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -56,7 +56,7 @@ addl $8,%esp
 pushl $1
 call exit
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC6:
 movl %ebp,%esp
 popl %edi
@@ -118,7 +118,7 @@ jbe .LC18
 mov $1,%eax
 jmp .LC9
 .LC18:
-mov $0,%eax
+xorl %eax,%eax
 .LC9:
 movl %ebp,%esp
 popl %edi
@@ -152,7 +152,7 @@ jg .LC24
 movl 20(%ebp),%eax
 jmp .LC21
 .LC24:
-mov $0,%eax
+xorl %eax,%eax
 .LC21:
 movl %ebp,%esp
 popl %edi
@@ -293,7 +293,7 @@ pushl 8(%edi)
 call tprint
 addl $4,%esp
 .LC47:
-mov $0,%eax
+xorl %eax,%eax
 .LC46:
 movl %ebp,%esp
 popl %edi
@@ -320,7 +320,7 @@ movl %esi,20(%ebp)
 movsbl (,%edi),%edi
 cmpl $0,%edi
 jne .LC55
-mov $0,%eax
+xorl %eax,%eax
 jmp .LC51
 .LC55:
 incl 24(%ebp)

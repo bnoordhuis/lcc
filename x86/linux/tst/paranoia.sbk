@@ -6344,7 +6344,7 @@ addl $8,%esp
 pushl $.LC821
 call printf
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC7:
 movl %ebp,%esp
 popl %edi
@@ -6406,7 +6406,7 @@ call printf
 addl $8,%esp
 incl Milestone
 incl PageNo
-mov $0,%eax
+xorl %eax,%eax
 .LC829:
 movl %ebp,%esp
 popl %edi
@@ -6435,7 +6435,7 @@ pushl $.LC814
 call printf
 addl $4,%esp
 .LC834:
-mov $0,%eax
+xorl %eax,%eax
 .LC833:
 movl %ebp,%esp
 popl %edi
@@ -6473,7 +6473,7 @@ pushl msg.838(,%edi,4)
 pushl $.LC843
 call printf
 addl $12,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC837:
 movl %ebp,%esp
 popl %edi
@@ -6607,7 +6607,7 @@ pushl $.LC856
 call printf
 addl $4,%esp
 .LC849:
-mov $0,%eax
+xorl %eax,%eax
 .LC848:
 movl %ebp,%esp
 popl %edi
@@ -6681,7 +6681,7 @@ fstpl Z1
 fldl Radix
 fmull D
 fstpl D
-mov $0,%eax
+xorl %eax,%eax
 .LC858:
 movl %ebp,%esp
 popl %edi
@@ -6776,7 +6776,7 @@ fldl SqEr
 fstpl MaxSqEr
 .LC867:
 .LC863:
-mov $0,%eax
+xorl %eax,%eax
 .LC862:
 movl %ebp,%esp
 popl %edi
@@ -6858,7 +6858,7 @@ addl $12,%esp
 .LC873:
 incl N
 .LC871:
-mov $0,%eax
+xorl %eax,%eax
 .LC870:
 movl %ebp,%esp
 popl %edi
@@ -6911,7 +6911,7 @@ sahf
 jp .LC885
 ja .LC885
 .LC887:
-mov $0,%eax
+xorl %eax,%eax
 .LC884:
 movl %ebp,%esp
 popl %edi
@@ -6937,7 +6937,7 @@ pushl $.LC894
 call printf
 addl $8,%esp
 .LC892:
-mov $0,%eax
+xorl %eax,%eax
 .LC891:
 movl %ebp,%esp
 popl %edi
@@ -7171,7 +7171,7 @@ addl $12,%esp
 call Pause
 .LC919:
 .LC897:
-mov $0,%eax
+xorl %eax,%eax
 .LC896:
 movl %ebp,%esp
 popl %edi
@@ -7197,7 +7197,7 @@ addl $8,%esp
 pushl $.LC943
 call printf
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC941:
 movl %ebp,%esp
 popl %edi
@@ -7230,7 +7230,7 @@ movl 20(%ebp),%edi
 movl (,%edi),%edi
 cmpl $0,%edi
 jne .LC946
-mov $0,%eax
+xorl %eax,%eax
 .LC945:
 movl %ebp,%esp
 popl %edi
@@ -7268,7 +7268,7 @@ movl %esp,%ebp
 pushl $instr.952
 call msglist
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC951:
 movl %ebp,%esp
 popl %edi
@@ -7311,7 +7311,7 @@ movl %esp,%ebp
 pushl $head.964
 call msglist
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC963:
 movl %ebp,%esp
 popl %edi
@@ -7359,7 +7359,7 @@ movl %esp,%ebp
 pushl $chars.981
 call msglist
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC980:
 movl %ebp,%esp
 popl %edi
@@ -7405,7 +7405,7 @@ movl %esp,%ebp
 pushl $hist.1003
 call msglist
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC1002:
 movl %ebp,%esp
 popl %edi

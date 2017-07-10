@@ -78,7 +78,7 @@ pushl $-2147483648
 pushl $.LC15
 call printf
 addl $12,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi

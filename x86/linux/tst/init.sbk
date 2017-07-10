@@ -119,7 +119,7 @@ call f
 pushl wordlist
 call g
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC4:
 movl %ebp,%esp
 popl %edi
@@ -168,7 +168,7 @@ movl -4(%ebp),%edi
 movl (,%edi),%edi
 cmpl $0,%edi
 jne .LC22
-mov $0,%eax
+xorl %eax,%eax
 .LC16:
 movl %ebp,%esp
 popl %edi
@@ -220,7 +220,7 @@ movl 20(%ebp),%edi
 cmpl $0,(,%edi)
 jne .LC29
 call h
-mov $0,%eax
+xorl %eax,%eax
 .LC28:
 movl %ebp,%esp
 popl %edi
@@ -258,7 +258,7 @@ incl -4(%ebp)
 movl -4(%ebp),%edi
 cmpl $5,%edi
 jb .LC40
-mov $0,%eax
+xorl %eax,%eax
 .LC39:
 movl %ebp,%esp
 popl %edi

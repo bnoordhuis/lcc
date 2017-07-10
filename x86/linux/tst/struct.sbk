@@ -230,7 +230,7 @@ pushl %edi
 pushl $.LC61
 call printf
 addl $8,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC60:
 movl %ebp,%esp
 popl %edi
@@ -409,7 +409,7 @@ addl $3,%esp
 pushl $0
 call exit
 addl $4,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC63:
 movl %ebp,%esp
 popl %edi

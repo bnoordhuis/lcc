@@ -87,7 +87,7 @@ pushl $.LC27
 call printf
 addl $4,%esp
 .LC24:
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -794,7 +794,7 @@ movb $0,(,%edi)
 incl -4(%ebp)
 cmpl $256,-4(%ebp)
 jl .LC323
-mov $0,%eax
+xorl %eax,%eax
 .LC322:
 movl %ebp,%esp
 popl %edi
@@ -1429,7 +1429,7 @@ pushl $s2.413
 call printf
 addl $16,%esp
 .LC432:
-mov $0,%eax
+xorl %eax,%eax
 .LC410:
 movl %ebp,%esp
 popl %edi
@@ -1686,7 +1686,7 @@ je .LC490
 mov $1,%eax
 jmp .LC489
 .LC490:
-mov $0,%eax
+xorl %eax,%eax
 .LC489:
 movl %ebp,%esp
 popl %edi
@@ -2695,7 +2695,7 @@ movl %esp,%ebp
 movl $3,20(%ebp)
 movl 24(%ebp),%edi
 movl $2,(,%edi)
-mov $0,%eax
+xorl %eax,%eax
 .LC703:
 movl %ebp,%esp
 popl %edi
@@ -14996,7 +14996,7 @@ incl -4(%ebp)
 movl 24(%ebp),%edi
 cmpl %edi,-4(%ebp)
 jl .LC3225
-mov $0,%eax
+xorl %eax,%eax
 .LC3224:
 movl %ebp,%esp
 popl %edi
@@ -15915,7 +15915,7 @@ pushl %esi
 pushl %edi
 movl %esp,%ebp
 movl $1066,extvar
-mov $0,%eax
+xorl %eax,%eax
 .LC3431:
 movl %ebp,%esp
 popl %edi

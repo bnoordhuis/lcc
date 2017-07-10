@@ -847,7 +847,7 @@ movl $0,P
 movl $0,P
 movl p,%edi
 movl %edi,P
-mov $0,%eax
+xorl %eax,%eax
 .LC4:
 movl %ebp,%esp
 popl %edi

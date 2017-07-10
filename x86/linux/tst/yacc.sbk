@@ -45,7 +45,7 @@ jmp *.LC17+4(,%edi,4)
 call yywrap
 cmpl $0,%eax
 je .LC7
-mov $0,%eax
+xorl %eax,%eax
 jmp .LC1
 .LC11:
 mov $257,%eax
@@ -68,7 +68,7 @@ call yylook
 movl %eax,-4(%ebp)
 cmpl $0,%eax
 jge .LC2
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -1036,7 +1036,7 @@ cmpl $0,%edi
 jne .LC108
 leal yysbuf,%edi
 movl %edi,yysptr
-mov $0,%eax
+xorl %eax,%eax
 jmp .LC34
 .LC108:
 movl yysptr,%edi
@@ -1148,7 +1148,7 @@ movl %esp,%ebp
 movl 20(%ebp),%edi
 cmpl $0,%edi
 jne .LC132
-mov $0,%eax
+xorl %eax,%eax
 jmp .LC128
 .LC131:
 movl 20(%ebp),%edi
@@ -1164,7 +1164,7 @@ jmp .LC128
 movl 20(%ebp),%edi
 cmpl $0,(,%edi)
 jne .LC131
-mov $0,%eax
+xorl %eax,%eax
 .LC128:
 movl %ebp,%esp
 popl %edi
@@ -1280,7 +1280,7 @@ pushl 20(%ebp)
 call _flsbuf
 addl $8,%esp
 .LC154:
-mov $0,%eax
+xorl %eax,%eax
 .LC151:
 movl %ebp,%esp
 popl %edi
@@ -1311,7 +1311,7 @@ movl %esi,yysptr
 movl yytchar,%esi
 movl %esi,%ebx
 movb %bl,(,%edi)
-mov $0,%eax
+xorl %eax,%eax
 .LC156:
 movl %ebp,%esp
 popl %edi
@@ -1335,7 +1335,7 @@ movl %edi,yyin
 leal _iob+32,%edi
 movl %edi,yyout
 call yyparse
-mov $0,%eax
+xorl %eax,%eax
 .LC160:
 movl %ebp,%esp
 popl %edi
@@ -1358,7 +1358,7 @@ pushl 20(%ebp)
 pushl $.LC164
 call printf
 addl $8,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC163:
 movl %ebp,%esp
 popl %edi
@@ -1942,7 +1942,7 @@ movw %di,-16(%ebp)
 movswl %di,%edi
 cmpl $0,%edi
 jge .LC204
-mov $0,%eax
+xorl %eax,%eax
 jmp .LC166
 .LC204:
 .LC189:

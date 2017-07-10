@@ -49,7 +49,7 @@ andl $117440512,%edi
 cmpl $0,%edi
 jne .LC8
 call limit
-mov $0,%eax
+xorl %eax,%eax
 .LC1:
 movl %ebp,%esp
 popl %edi
@@ -218,7 +218,7 @@ addl $8,%esp
 incl -4(%ebp)
 cmpl $20,-4(%ebp)
 jle .LC28
-mov $0,%eax
+xorl %eax,%eax
 .LC26:
 movl %ebp,%esp
 popl %edi
@@ -330,7 +330,7 @@ addl $8,%esp
 incl -4(%ebp)
 cmpl $10,-4(%ebp)
 jle .LC50
-mov $0,%eax
+xorl %eax,%eax
 .LC48:
 movl %ebp,%esp
 popl %edi
@@ -500,7 +500,7 @@ pushl -8(%ebp)
 pushl $.LC108
 call printf
 addl $8,%esp
-mov $0,%eax
+xorl %eax,%eax
 .LC76:
 movl %ebp,%esp
 popl %edi
@@ -566,7 +566,7 @@ pushl $.LC118
 call printf
 addl $8,%esp
 .LC112:
-mov $0,%eax
+xorl %eax,%eax
 .LC110:
 movl %ebp,%esp
 popl %edi
@@ -696,7 +696,7 @@ addl $4,%esp
 decl -4(%ebp)
 cmpl $2147483642,-4(%ebp)
 jge .LC141
-mov $0,%eax
+xorl %eax,%eax
 .LC122:
 movl %ebp,%esp
 popl %edi
