@@ -567,17 +567,19 @@ static void fields(Type ty) {
 				warning("missing prototype\n");
 			if (t == ':') {
 				if (unqual(p->type) != inttype
-				&&  unqual(p->type) != unsignedtype) {
+				&&  unqual(p->type) != unsignedtype
+				&&  unqual(p->type) != shorttype
+				&&  unqual(p->type) != unsignedshort) {
 					error("`%t' is an illegal bit-field type\n",
 						p->type);
 					p->type = inttype;
 				}
 				t = gettok();
 				p->bitsize = intexpr(0, 0);
-				if (p->bitsize > 8*inttype->size || p->bitsize < 0) {
+				if (p->bitsize > 8*p->type->size || p->bitsize < 0) {
 					error("`%d' is an illegal bit-field size\n",
 						p->bitsize);
-					p->bitsize = 8*inttype->size;
+					p->bitsize = 8*p->type->size;
 				} else if (p->bitsize == 0 && id) {
 					warning("extraneous 0-width bit field `%t %s' ignored\n", p->type, id);
 
@@ -612,12 +614,10 @@ static void fields(Type ty) {
 	  ty->align = IR->structmetric.align;
 	  for (p = *q; p; p = p->link) {
 	  	int a = p->type->align ? p->type->align : 1;
-		if (p->lsb)
-			a = unsignedtype->align;
 		if (ty->op == UNION)
 			off = bits = 0;
 		else if (p->bitsize == 0 || bits == 0
-		|| bits - 1 + p->bitsize > 8*unsignedtype->size) {
+		|| bits - 1 + p->bitsize > 8*p->type->size) {
 			off = add(off, bits2bytes(bits-1));
 			bits = 0;
 			chkoverflow(off, a - 1);
@@ -633,7 +633,7 @@ static void fields(Type ty) {
 			if (IR->little_endian)
 				p->lsb = bits;
 			else
-				p->lsb = 8*unsignedtype->size - bits + 1
+				p->lsb = 8*p->type->size - bits + 1
 					- p->bitsize + 1;
 			bits += p->bitsize;
 		} else
