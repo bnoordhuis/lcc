@@ -214,6 +214,7 @@ char *basepath(char *name) {
 #ifdef WIN32
 #include <process.h>
 #else
+#include <errno.h>
 #define _P_WAIT 0
 extern int fork(void);
 extern int wait(int *);
@@ -233,8 +234,9 @@ static int _spawnvp(int mode, const char *cmdname, const char *const argv[]) {
 		fflush(stdout);
 		exit(100);
 	}
-	while ((n = wait(&status)) != pid && n != -1)
-		;
+	do
+		n = wait(&status);
+	while (n != pid && (n != -1 || errno == EINTR));
 	if (n == -1)
 		status = -1;
 	if (status&0377) {
